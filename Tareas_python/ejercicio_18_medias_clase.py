@@ -40,9 +40,15 @@ def calcular_aprobados(lista_medias):
     return lista_aprobados
 
 
+
 def averiguar_nombres_aprobados(lista_estudiantes, lista_medias):
     
     ...
+
+
+
+
+
 
 
 if __name__ == '__main__':
