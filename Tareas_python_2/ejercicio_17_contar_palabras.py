@@ -14,9 +14,6 @@ os.system('cls')
 #   - opcion 2: la cadena de texto es una aleatoria de un Diccionario que tendreis que crear con al menos 6 frases. 
 
 
-
-
-
 def mostrar_menu():
     print('- '*57)
     print('%-1s %60s %50s' %('|', 'CONTAR PALABRAS', '|'))
@@ -39,42 +36,24 @@ def comprobar_opcion():
             print('Error. La opción tiene que ser un número\n')
 
 
-
-
-
-
-
-
-# Hay que pasarle una cadena de texto a la función
-# Pasarlo todo a minuscula para que no haya palabras que se repiten
-# introducirlo en un diccionario
-
 def contar_palabras(cadena):
-    cadena = cadena.lower().split('.')
-    palabras_sin_repetir = {}
 
-    for i in cadena:
-        if (i not in palabras_sin_repetir):
-            palabras_sin_repetir[i] += 1
+    frecuencia_palabras = {}
+    palabras = cadena.split(' ')
+
+    for palabra in palabras:
+        if palabra in frecuencia_palabras:
+            frecuencia_palabras[palabra] += 1
         else:
-            palabras_sin_repetir[i] = 1
+            frecuencia_palabras[palabra] = 1
 
-    return 
-
-
+    return frecuencia_palabras
 
 
 
-# dividir el diccionario en palabras y contar cada una de ellas
-# en caso de que se repita aumentar en uno el contador
-# darlas de forma ordenada alfabeticamente
-
-def contar_palabras(cadena):
-    return ...
-
-
-
-
+# En caso de que sea una cadena introducida se pasa directamente a la funcion, y se introducira al diccionario
+# En caso de que sea un diccionario, entrar en los valores de cada uno de ellos
+# Separar las palabras por el caracter '.', contar las palabras
 
 if __name__ == '__main__':
     texto = {
@@ -93,7 +72,8 @@ if __name__ == '__main__':
     match opcion:
         case 1:
             texto = input('Introduce un texto: ')
-            
+            cantidad_palabras = contar_palabras(texto)
+            print(cantidad_palabras)
         case 2:
             ...
     
