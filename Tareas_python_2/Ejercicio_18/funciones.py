@@ -16,7 +16,7 @@ estudiantes = [
 
 def calcular_media(listas):
     medias = []
-    
+
     for lista in listas:
         notas = lista['notas']
         nota_total = 0
@@ -37,7 +37,6 @@ def calcular_media(listas):
 def calcular_aprobados(lista_medias):
 
     lista_aprobados = []
-    lista_suspensos = []
 
     for media in lista_medias:
         if (media >= 5):
@@ -61,19 +60,8 @@ def encontrar_estudiante_media_mayor(lista_medias, lista_estudiantes):
     indice_mayor = 0
 
     for i in range(len(lista_medias)):
-        if(lista_medias[i] < nota_mayor):
+        if(lista_medias[i] > nota_mayor):
             nota_mayor = lista_medias[i]
-            print(nota_mayor)
-
-
-if __name__ == '__main__':
-    medias = calcular_media(estudiantes)
-    print(f'Medias: {medias}')
-    aprobados = calcular_aprobados(medias)
-    print(f'Aprobados: {aprobados}')
-    aprobados = calcular_suspensos(medias)
-    print(f'Suspensos: {aprobados}')
-    # nombres_aprobados = averiguar_nombres_aprobados(estudiantes, aprobados)
-    # print(nombres_aprobados)
-    alumno_media_mayor = encontrar_estudiante_media_mayor(estudiantes, medias)
-    print(alumno_media_mayor)
+            indice_mayor = i
+    
+    return lista_estudiantes[indice_mayor]['nombre'], nota_mayor
