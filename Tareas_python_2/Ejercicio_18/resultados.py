@@ -1,20 +1,18 @@
 import os
 os.system('cls')
 
+from funciones import estudiantes, calcular_media, encontrar_aprobados_y_suspensos, encontrar_mejor_estudiante
 
-from funciones import calcular_media, calcular_aprobados, calcular_suspensos, estudiantes
 
 if __name__ == '__main__':
 
-    for estudiante in estudiantes:
-        nombre = estudiante['nombre']
-        print(nombre)
-        promedio = calcular_media(estudiante)
-        print(promedio)
+    for i in estudiantes:
+        media = calcular_media(estudiantes)
+        aprobados_y_suspensos = encontrar_aprobados_y_suspensos(estudiantes)
+        mejor_media, mejor_estudiante = encontrar_mejor_estudiante(estudiantes)
 
-    medias = calcular_media(estudiantes)
-    print(f'Medias: {medias}')
-    aprobados = calcular_aprobados(medias)
-    print(f'Aprobados: {aprobados}')
-    aprobados = calcular_suspensos(medias)
-    print(f'Suspensos: {aprobados}')
+    for estudiante in estudiantes:
+        print(f'{estudiante['nombre']} - Promedio: {estudiante['media']:.2f} - Estado: {estudiante['estado']}')
+    
+    print(f"El mejor estudiante es {mejor_estudiante} con un promedio de {mejor_media:.2f}")
+

@@ -14,13 +14,13 @@ estudiantes = [
 ]
 
 
-def calcular_media(listas):
+def calcular_media(lista_estudiantes):
+    
     medias = []
 
-    for lista in listas:
-        notas = lista['notas']
+    for estudiante in lista_estudiantes:
+        notas = estudiante['notas']
         nota_total = 0
-        media = 0
         cantidad_notas = 0
 
         for nota in notas:
@@ -28,40 +28,47 @@ def calcular_media(listas):
             cantidad_notas += 1
 
         media = nota_total / cantidad_notas
-        media = round(media, 1)
+        media = round(media, 2)
+        estudiante['media'] = media
         medias.append(media)
-        
+
     return medias
 
 
-def calcular_aprobados(lista_medias):
-
+def encontrar_aprobados_y_suspensos(lista_estudiantes):
     lista_aprobados = []
-
-    for media in lista_medias:
-        if (media >= 5):
-            lista_aprobados.append(media)
-    
-    return lista_aprobados
-
-
-def calcular_suspensos(lista_medias):
     lista_suspensos = []
-
-    for media in lista_medias:
-        if (media < 5):
-            lista_suspensos.append(media)
+    promedio = 5
     
-    return lista_suspensos
+    for estudiante in lista_estudiantes:
+        media = estudiante['media']
+
+        if media >= promedio:
+            lista_aprobados.append(estudiante['nombre'])
+            estudiante['estado'] = 'Aprobado'
+        else:
+            lista_suspensos.append(estudiante['nombre'])
+            estudiante['estado'] = 'Reprobado'
+
+    return lista_aprobados, lista_suspensos
 
 
-def encontrar_estudiante_media_mayor(lista_medias, lista_estudiantes):
-    nota_mayor = lista_medias[0]
-    indice_mayor = 0
 
-    for i in range(len(lista_medias)):
-        if(lista_medias[i] > nota_mayor):
-            nota_mayor = lista_medias[i]
-            indice_mayor = i
+def encontrar_mejor_estudiante(lista_estudiantes):
+
+    media_mayor = lista_estudiantes[0]['media']
+    mejor_estudiante = lista_estudiantes[0]['nombre']
+
+    for estudiante in lista_estudiantes:
+        if estudiante['media'] > media_mayor:
+            media_mayor = estudiante['media']
+            mejor_estudiante = estudiante['nombre']
     
-    return lista_estudiantes[indice_mayor]['nombre'], nota_mayor
+    return media_mayor, mejor_estudiante
+    
+
+
+# if __name__ == '__main__':
+#     print(calcular_media(estudiantes))
+#     print(encontrar_aprobados_y_suspensos(estudiantes))
+#     print(encontrar_mejor_estudiante(estudiantes))
