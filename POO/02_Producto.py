@@ -19,7 +19,7 @@ class Producto:
         self.precio = precio
 
     # Método para modificar el nombre
-    def modifiar_nombre(self, nombre):
+    def modificar_nombre(self, nombre):
         self.nombre = nombre
     
 
@@ -27,15 +27,15 @@ class Producto:
         return f"Producto --> Nombre:{self.nombre} - Precio: {self.precio}"
 
 
-prod = Producto() # Si no le paso nada, usa los valores por defecto del __init__
-prod = Producto('Teclado', 50)
+prod_1 = Producto() # Si no le paso nada, usa los valores por defecto del __init__
+prod_2 = Producto('Teclado', 50)
 
-print(prod)     # Imprime el __self__
-print(prod.nombre)
-print(prod.precio)
+print(prod_1)     # Imprime el __self__
+print(prod_2.nombre)
+print(prod_2.precio)
 
-prod.modifiar_nombre('Monitor')
-prod.nombre = "Portatil"    # Cambia el nombre de la variable
-prod.modificar_precio(300)
+prod_2.modificar_nombre('Monitor')
+prod_2.nombre = "Portatil"             # Otra forma de cambiar el nombre de la variable
+prod_2.modificar_precio(300)
 
-print(prod)
+print(prod_2)
