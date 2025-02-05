@@ -34,7 +34,7 @@ class Vehiculo:
 
 class Coche(Vehiculo):
 
-    def __init__(self, marca=str, modelo=str, velocidad_maxima=int, tipo_combustible):
+    def __init__(self, marca=str, modelo=str, velocidad_maxima=int, tipo_combustible=str):
         super().__init__(marca, modelo, velocidad_maxima)
         self.tipo_combustible = tipo_combustible
 
@@ -44,14 +44,32 @@ class Coche(Vehiculo):
 
 
 class Bicicleta(Vehiculo):
-    def __init__(self, tipo):
-        super.__init__()
+    def __init__(self, marca=str, modelo=str, velocidad_maxima=int, tipo=str):
+        super().__init__(marca, modelo, velocidad_maxima)
         self.tipo = tipo
-        tipo = 'montaña'
     
     def acelerar(self):
         print(f'La bicicleta está tomando velocidad')
 
-vehiculo = Vehiculo('Bugatti', 'Chiron Super Sport 300+', 490)
-coche = Coche('Gasolina')
-bicicleta = Bicicleta()
+
+
+vehiculo = Vehiculo('Toyota', 'Corolla', 180)
+coche = Coche('Ford','Focus', 200, 'Diesel')
+bicicleta = Bicicleta('Trek', 'Domane SLR 9', 45, 'montaña')
+
+vehiculo.detalles()
+vehiculo.acelerar()
+print(vehiculo.marca)
+print(vehiculo.modelo)
+
+print()
+
+coche.detalles()
+coche.acelerar()
+print(f'Tipo combustible: {coche.tipo_combustible}')
+
+print()
+
+bicicleta.detalles()
+bicicleta.acelerar()
+print(f'Tipo: {bicicleta.tipo}')

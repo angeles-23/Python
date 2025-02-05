@@ -32,11 +32,9 @@ class Personaje:
         return f'El personaje ataca'
     
     def recibir_danio(self, puntos):
-        vida_restante = self.vida - puntos
-        return f'Vida restante: {vida_restante}'
+        return f'Vida restante: {self.vida-puntos}'
     
-    # def defensa_fisica, nivel_experiencia, 
-    
+
 
 class Guerrero(Personaje):
     def atacar(self):
