@@ -45,8 +45,10 @@ class Personaje():
         self.__vida += 10
 
     def recibir_danio(self, cantidad):
-        if(cantidad > 0 and self.__vida > cantidad and self.__vida >= 0):
+        if(cantidad > 0):
             self.__vida -= cantidad
+            if(self.__vida < 0):
+                self.__vida = 0
         else:
             print('El daño no puede ser negativo')
     
@@ -62,14 +64,17 @@ class Picaro(Personaje):
         super().__init__()
         self.__fuerza = 10
 
-    def __str__(self):
-        return f'Mostruo --> Vida: {self.get_vida()} | Nivel: {self.get_nivel()}'
-    
     def atacar(self):
         print(f'El pícaro ataca con una fuerza de {self.__fuerza}!')
     
     def mejorar_fuerza(self):
         self.__fuerza += 5
+    
+    def __str__(self):
+        return f'Picaro --> Vida: {self.get_vida()} | Nivel: {self.get_nivel()}'
+
+    def mostrar_fuerza(self):
+        return self.__fuerza
 
 
 class Monstruo:
@@ -77,10 +82,11 @@ class Monstruo:
         self.__nivel = 1
         self.__vida = 50
         
-
     def recibir_danio(self, cantidad):
-        if(cantidad > 0 and self.__vida > cantidad and self.__vida >= 0):
+        if(cantidad > 0):
             self.__vida -= cantidad
+            if(self.__vida < 0):
+                self.__vida = 0
     
     def get_vida(self):
         return self.__vida
@@ -94,30 +100,46 @@ def mostrar_menu():
     print('1. Aparecer un mostruo')
     print('2. Atacar al mostruo')
     print('3. Picaro recibe daño del mostruo')
-    print('4. Mostrar vida actual de mostruo y pícaro tras cada acción')
-    print('5. Mejorar fuerza del pícaro')
+    print('4. Mejorar fuerza del pícaro')
     print('(El juego acabará, si pícaro o monstruo llegan a 0 en vida)\n')
 
 
-
 if __name__ == '__main__':
-    menu = mostrar_menu()
-    opcion = int(input('Elige una opción: '))
-    
-    picaro = Picaro()
 
-    match opcion:
-        case 1:
-            mostruo = Monstruo()
-            print('Se ha creado un mostruo con las siguientes características')
-            print(mostruo)
-        case 2:
-            print(picaro)
-        case 3:
-            ...
-        case 4:
-            ...
-        case 5:
-            ...
-        case _:
-            print('Opción incorrecta. Debe ser entre 1-5')
+    picaro = Picaro()
+    monstruo = Monstruo()
+
+    while monstruo.get_vida() > 0 and picaro.get_vida() > 0:
+        try:
+            menu = mostrar_menu()
+            opcion = int(input('Elige una opción: '))
+            
+            match opcion:
+                case 1:
+                    print('Se ha creado un mostruo con las siguientes características:')
+                case 2:
+                    danio = int(input('Cantidad de daño para el monstruo: '))
+                    monstruo.recibir_danio(danio)
+                case 3:
+                    danio = int(input('Cantidad de daño para el picaro: '))
+                    picaro.recibir_danio(danio)
+                case 4:
+                    picaro.mejorar_fuerza()
+                    print(f'Fuerza: {picaro.mostrar_fuerza()}')
+                case _:
+                    print('Opción incorrecta. Debe ser entre 1-5')
+            
+            print(f'{monstruo}    -    {picaro}')
+
+            if monstruo.get_vida() <= 0:
+                print('Has matado a monstruo.')
+                break
+
+            if picaro.get_vida() <= 0:
+                print('Has matado a picaro')
+                break
+
+            print('\n')
+
+        except Exception as error:
+            print(f'Se ha producido un error. Vuelve a intentarlo')
