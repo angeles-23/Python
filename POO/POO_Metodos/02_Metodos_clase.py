@@ -31,4 +31,5 @@ lefties = Tienda('lefties')
 nike = Tienda('nike')
 adidas = Tienda('adidas')
 
-print(Tienda.cantidad_tiendas())        # Tiendas creadas: 4
+print(Tienda.cantidad_tiendas())
+# Tiendas creadas: 4

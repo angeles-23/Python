@@ -8,14 +8,39 @@
 # Un método estático lista_primos que reciba un número entero n y devuelva una lista con todos los números primos hasta n.
 # Prueba los métodos sin crear una instancia de la clase.
 
+import os, math
+os.system('cls')
+
 class Numeros():
+
     @staticmethod
-
     def es_primo(numero):
-        numero_primo = False
+        
+        if numero <= 1:
+            return False
+        
+        if numero == 2:
+            return True 
 
-        if numero <= 2:
-            for i in range(2, numero):
-                ...
+        if numero % 2 == 0:
+            return False
 
-        return numero_primo
+        for i in range(3, int(math.sqrt(numero))):
+            if numero % i == 0:
+                return False
+
+        return True
+
+    @staticmethod
+    def lista_primos(n):
+        numeros_primos = []
+
+        if Numeros.es_primo(n):
+            numeros_primos.append(n)
+
+
+
+numero = 23
+print(f'El número {numero} es {Numeros.es_primo(numero)}')
+
+Numeros.lista_primos(numero)
