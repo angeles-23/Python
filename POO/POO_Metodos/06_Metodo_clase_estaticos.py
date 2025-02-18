@@ -1,3 +1,15 @@
+# ✔️ **Objetivo:** Implementar un sistema de registro de usuarios con métodos de clase y estáticos.
+
+# 🔹 **Ejercicio:**  
+# Crea una clase `Usuario` que tenga:
+# - Un atributo de clase `usuarios_registrados`, que almacene un contador de usuarios creados.
+# - Un constructor que reciba el nombre del usuario e incremente `usuarios_registrados`.
+# - Un método de instancia `mostrar_usuario` que devuelva el nombre del usuario.
+# - Un método de clase `cantidad_usuarios` que devuelva el número total de usuarios registrados.
+# - Un método estático `validar_nombre_usuario` que reciba un nombre y devuelva `True` si tiene más de 3 caracteres, `False` en caso contrario.
+
+# Crea varias instancias de `Usuario` y prueba los métodos.
+
 class Usuario:
     usuarios_registrados = 0
     def __init__(self, nombre):
