@@ -25,13 +25,13 @@ f = open(nombre_archivo, 'w')
 
 # Bucle que genera la tabla de multiplicar del número registrado
 for i in range(1, 10+1): # El fin del rango es un nº +
+
     # Creamos una linea con la multiplicacion en formado 'n x i = resultado'
     f.write(f'{str(n)} * {str(i)} = {str(n*i)}\n')
 
     print(f'{str(n)} * {str(i)} = {str(n*i)}') # Mostrar el contenido por la consola
     # Otra forma: print(f'{n} * {i} = {i*n}')
 
-    # Cierra el archivo para asegurar que los cambios se guardan correctamente
+# Cierra el archivo para asegurar que los cambios se guardan correctamente
 f.close()
 print('Archivo creado correctamente')
-

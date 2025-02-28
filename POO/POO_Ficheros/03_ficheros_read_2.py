@@ -1,5 +1,4 @@
 # Ejercicio:
-
 # Escribir una función que pida 2 números enteros 'n' y 'm' ambos entre 1 y 10 (hacerlo con comprobación de errores). Leer el fichero 'tabla-n.txt' (si existe) y muestre por pantalla la linea 'm' del fichero (pista: usar 'f.readlines()' para almacenar en un array las lineas del documento). Si el fichero no existe se debe mostrar un pensaje por pantalla para ello.
 
 import os 
@@ -44,14 +43,14 @@ def obtener_lineas_del_archivo():
 
     try:
         f = open(fichero, 'r')  # Abre el fichero y lo lee
-        lista = (f.readlines())    # Crea una lista con el texto que existe en el fichero
+        lista = (f.readlines())    # Crea una lista con el todas las lineas del fichero
         print(lista) 
         # n = 2  ->  ['2 * 1 = 2\n', '2 * 2 = 4\n', '2 * 3 = 6\n', '2 * 4 = 8\n', '2 * 5 = 10\n', '2 * 6 = 12\n', '2 * 7 = 14\n', '2 * 8 = 16\n', '2 * 9 = 18\n', '2 * 10 = 20\n']
         
         print(lista[m-1])    # Da la linea del archivo según m, y se le resta 1 porque la lista empieza en la posicion 0
         # m = 4-1  ->   2 * 3 = 6
     except FileNotFoundError:
-        print(f'Error. No existe el fichero con la tabladel {n}')
+        print(f'Error. No existe el fichero con la tabla del {n}')
     else:
         print(f.read())
         f.close()
