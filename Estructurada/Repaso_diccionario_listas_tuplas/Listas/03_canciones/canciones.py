@@ -1,0 +1,20 @@
+canciones = [
+    {"titulo": "Shape of You", "artista": "Ed Sheeran", "anio": 2017, "genero": "Pop", "duracion": 3.53, "calificacion": 4.9, "album": "Divide", "pais": "Reino Unido"},
+    {"titulo": "Blinding Lights", "artista": "The Weeknd", "anio": 2019, "genero": "Pop", "duracion": 3.20, "calificacion": 4.8, "album": "After Hours", "pais": "Canadá"},
+    {"titulo": "Bohemian Rhapsody", "artista": "Queen", "anio": 1975, "genero": "Rock", "duracion": 5.55, "calificacion": 5.0, "album": "A Night at the Opera", "pais": "Reino Unido"},
+    {"titulo": "Imagine", "artista": "John Lennon", "anio": 1971, "genero": "Rock", "duracion": 3.01, "calificacion": 4.9, "album": "Imagine", "pais": "Reino Unido"},
+    {"titulo": "Despacito", "artista": "Luis Fonsi ft. Daddy Yankee", "anio": 2017, "genero": "Reggaeton", "duracion": 4.42, "calificacion": 4.7, "album": "Vida", "pais": "Puerto Rico"},
+    {"titulo": "Uptown Funk", "artista": "Mark Ronson ft. Bruno Mars", "anio": 2014, "genero": "Funk", "duracion": 4.29, "calificacion": 4.8, "album": "Uptown Special", "pais": "Estados Unidos"},
+    {"titulo": "Rolling in the Deep", "artista": "Adele", "anio": 2010, "genero": "Soul", "duracion": 3.48, "calificacion": 4.9, "album": "21", "pais": "Reino Unido"},
+    {"titulo": "Bad Guy", "artista": "Billie Eilish", "anio": 2019, "genero": "Pop", "duracion": 3.14, "calificacion": 4.8, "album": "When We All Fall Asleep, Where Do We Go?", "pais": "Estados Unidos"},
+    {"titulo": "Smells Like Teen Spirit", "artista": "Nirvana", "anio": 1991, "genero": "Grunge", "duracion": 5.01, "calificacion": 4.9, "album": "Nevermind", "pais": "Estados Unidos"},
+    {"titulo": "Havana", "artista": "Camila Cabello ft. Young Thug", "anio": 2017, "genero": "Pop", "duracion": 3.37, "calificacion": 4.7, "album": "Camila", "pais": "Cuba"},
+    {"titulo": "Levitating", "artista": "Dua Lipa ft. DaBaby", "anio": 2020, "genero": "Pop", "duracion": 3.23, "calificacion": 4.8, "album": "Future Nostalgia", "pais": "Reino Unido"},
+    {"titulo": "Stairway to Heaven", "artista": "Led Zeppelin", "anio": 1971, "genero": "Rock", "duracion": 8.02, "calificacion": 5.0, "album": "Led Zeppelin IV", "pais": "Reino Unido"},
+    {"titulo": "Shake It Off", "artista": "Taylor Swift", "anio": 2014, "genero": "Pop", "duracion": 3.39, "calificacion": 4.6, "album": "1989", "pais": "Estados Unidos"},
+    {"titulo": "All of Me", "artista": "John Legend", "anio": 2013, "genero": "R&B", "duracion": 4.29, "calificacion": 4.9, "album": "Love in the Future", "pais": "Estados Unidos"},
+    {"titulo": "I Will Always Love You", "artista": "Whitney Houston", "anio": 1992, "genero": "Pop", "duracion": 4.31, "calificacion": 5.0, "album": "The Bodyguard", "pais": "Estados Unidos"},
+    {"titulo": "Closer", "artista": "The Chainsmokers ft. Halsey", "anio": 2016, "genero": "EDM", "duracion": 4.04, "calificacion": 4.7, "album": "Collage", "pais": "Estados Unidos"},
+    {"titulo": "Perfect", "artista": "Ed Sheeran", "anio": 2017, "genero": "Pop", "duracion": 4.23, "calificacion": 4.9, "album": "Divide", "pais": "Reino Unido"},
+    {"titulo": "Take On Me", "artista": "a-ha", "anio": 1984, "genero": "Pop", "duracion": 3.47, "calificacion": 4.8, "album": "Hunting High and Low", "pais": "Noruega"}
+]
