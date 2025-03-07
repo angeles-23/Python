@@ -199,54 +199,49 @@ while True:
 
 
 ## 5. Formateo de variables
-```python
-# Con formato printf
+`%s`: cadenas de texto
+`%d`: numeros enteros
+`%f`: numeros flotantes (double)
+`%.2f`: muestra hasta dos decimales de un flotante (cambia el numero de decimales)
+`%c`: char
+
+
+### 5.1. Con `printf`
+``` python
 texto = 'Python'
 numero = '10'
 
-print(f'Mi mensaje es: {texto} se merece un {numero}')
+print(f'Mensaje: {texto} se merece un {numero}')    # Mensaje: Python se merece un 10
 
 alumno1 = 'David'
 alumno2 = 'Rubén'
 alumno3 = 'Pedro'
-alumno4 = 'Silvia'
 
-# Diseño de multiplicacion de cadenas
 estatura1 = '178'
 estatura2 = 180
 estatura3 = 168
-estatura4 = 158
 
-print(f'{'Alumno':20} {'Escritura':10}')
-print(f'{'-'*20} {'-'*10}')
-# numeros al final y cadenas al principio
-print(f'{alumno1:20} {estatura1:10}')
-print(f'{alumno2:20} {estatura2:10}')
-print(f'{alumno3:20} {estatura3:10}')
-print(f'{alumno4:20} {estatura4:10}')
+# NOTA 🗒️: Las cadenas empiezan por el principio(izquierda) y los numeros apor el final(derecha)
+print(f'{'Alumno':20} {'Escritura':10}')        # Alumno               Escritura
+print(f'{'-'*20} {'-'*10}')                     # -------------------- ----------
+print(f'{alumno1:20} {estatura1:10}')           # David                178
+print(f'{alumno2:20} {estatura2:10}')           # Rubén                       180
+print(f'{alumno3:20} {estatura3:10}')           # Pedro                       168
+```
 
 
-# Con %
+### 5.2. Con `%` 
+``` python
 texto = 'python'
 numero = 10
 
-# %s es para cadenas de texto
-# %d es para enteros
-# %f es para numeros flotantes (double)
-# %.2f es para mostrar hasta dos decimales de un flotante (cambiar numero de decimales)
-# %c es para char
-# %x es para hexadecimales
-# %o es para octales
-
-print('Mi mensaje es: %s se merece un %d' %(texto, numero))
+print('Mensaje: %s se merece un %d' %(texto, numero))       # Mensaje: Python se merece un 10
 pi = 3.141592
-print('Pi con dos decimales es: %.2f' %pi)
+print('Pi con dos decimales es: %.2f' %(pi))                # Pi con dos decimales es: 3.14
 ```
 
-### 5.1. Creación de una lista 
-### 5.2. Creación de una lista 
-### 5.3. Creación de una lista 
-### 5.4. Creación de una lista  
+
+
 
 
 ## 6. Clases
@@ -257,9 +252,10 @@ print('Pi con dos decimales es: %.2f' %pi)
 ### 6.5. Clase 
 ### 6.6. Clase 
 
+
+
+
+
 ## 7. Ficheros
 ### 7.1. Creación de 
 ### 7.2. Creación de 
-### 7.3. Creación de 
-### 7.4. Creación de 
-### 7.5. Creación de 
