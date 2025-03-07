@@ -202,8 +202,8 @@ while True:
 - `%s`: cadenas de texto
 - `%d`: numeros enteros
 - `%f`: numeros flotantes (double)
-- `%.2f`: muestra hasta dos decimales de un float (cantidad de decimales)  #{'anios': float(f'{anios_antiguedad:.2f}')},  texto al que le doy 2 decimales y luego lo paso a float  {'anios': 7.51}
--  %c`: char
+- `%.2f`: muestra hasta dos decimales de un float (cantidad de decimales) ```python {'anios': float(f'**{anios_antiguedad:.2f}**')},  texto con 2 decimales y luego lo paso a float **{'anios': 7.51}**```
+- `%c`: char
 
 
 ### 5.1. Con `printf`
