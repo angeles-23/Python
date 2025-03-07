@@ -199,11 +199,11 @@ while True:
 
 
 ## 5. Formateo de variables
-`%s`: cadenas de texto
-`%d`: numeros enteros
-`%f`: numeros flotantes (double)
-`%.2f`: muestra hasta dos decimales de un flotante (cambia el numero de decimales)
-`%c`: char
+- `%s`: cadenas de texto
+- `%d`: numeros enteros
+- `%f`: numeros flotantes (double)
+- `%.2f`: muestra hasta dos decimales de un float (cantidad de decimales)  #{'anios': float(f'{anios_antiguedad:.2f}')},  texto al que le doy 2 decimales y luego lo paso a float  {'anios': 7.51}
+-  %c`: char
 
 
 ### 5.1. Con `printf`
