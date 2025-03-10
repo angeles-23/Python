@@ -9,5 +9,6 @@ estudiantes = [
     ("Javier Torres", 20, "Química", 7.5, 94),
     ("Clara Fernández", 21, "Historia", 8.8, 98),
     ("Raúl Díaz", 18, "Matemáticas", 7.9, 91),
-    ("Sofía Gómez", 20, "Física", 9.0, 99)
+    ("Marta Gómez", 20, "Física", 9.0, 99)
 ]
+
