@@ -8,58 +8,63 @@ empleados = {
         "nombre": "Ana Martínez",
         "edad": 35,
         "cargo": "Gerente",
-        "salario": 75_000,
+        "salario": 100_000,
         "fecha_ingreso": "2015-03-01"
     },
     1002: {
         "nombre": "Luis Pérez",
         "edad": 28,
         "cargo": "Desarrollador",
-        "salario": 55_000,
+        "salario": 10_000,
         "fecha_ingreso": "2018-07-22"
     },
     1003: {
         "nombre": "Marta López",
         "edad": 40,
         "cargo": "Desarrollador",
-        "salario": 60_000,
+        "salario": 20_000,
         "fecha_ingreso": "2013-06-15"
     },
     1004: {
         "nombre": "Carlos Gómez",
         "edad": 33,
         "cargo": "Gerente",
-        "salario": 100_000,
+        "salario": 59_000,
         "fecha_ingreso": "2017-09-05"
     },
     1005: {
         "nombre": "Sara Ruiz",
         "edad": 30,
-        "cargo": "Desarrollador",
-        "salario": 50_000,
+        "cargo": "Diseñador",
+        "salario": 35_000,
         "fecha_ingreso": "2019-01-11"
     }
 }
 
-def empleados_mas_jovenes(empleados):
-    
-    lista_empleados_mas_jovenes = {}
-    empleados_mas_jovenes = []
+def encontrar_cuantos_empleados_hay(empleados):
+    contador_gerente = 0
+    contador_diseñador = 0
+    contador_desarrollador = 0
+    lista_cantidad_empleados = []
 
     for empleado in empleados:
-        lista_empleados_mas_jovenes[empleado] = (empleados[empleado]['edad'], empleados[empleado]['nombre'])
-        empleados_mas_jovenes.append(empleados[empleado]['edad'])
-    
-    empleados_mas_jovenes_ordenados = sorted(empleados_mas_jovenes)
+        cargo = empleados[empleado]['cargo']
 
-    empleados_mas_jovenes_resultado = []
+        if (cargo == 'Gerente'):
+            contador_gerente += 1
+        elif (cargo == 'Diseñador'):
+            contador_diseñador += 1
+        elif(cargo == 'Desarrollador'):
+            contador_desarrollador += 1
     
-    for i in range(3):
-        ...
+    lista_cantidad_empleados.append(f'Gerente = {contador_gerente}')
+    lista_cantidad_empleados.append(f'Diseñador = {contador_diseñador}')
+    lista_cantidad_empleados.append(f'Desarrollador = {contador_desarrollador}')
 
-    return empleados_mas_jovenes_ordenados
+    return lista_cantidad_empleados
 
 
 
 if __name__ == '__main__':
-    print(empleados_mas_jovenes(empleados))
+    cantidad_empleados = encontrar_cuantos_empleados_hay(empleados)
+    print(cantidad_empleados)

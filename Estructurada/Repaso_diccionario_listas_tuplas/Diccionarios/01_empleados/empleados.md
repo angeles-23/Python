@@ -237,10 +237,10 @@ def empleados_mas_jovenes(empleados):
 
     empleados_mas_jovenes_resultado = []
     
-    for i in range(3):
-        ...
+    for i in range(0,3):
+        empleados_mas_jovenes_resultado.append(empleados_mas_jovenes_ordenados[i])
 
-    return empleados_mas_jovenes_ordenados
+    return empleados_mas_jovenes_resultado
 
 
 
@@ -252,72 +252,81 @@ if __name__ == '__main__':
 **9. Generar un informe de empleados con salarios por encima del promedio**
 - Ejercicio: Calcula el salario promedio de la empresa. Luego, crea una función que liste a todos los empleados que ganan más que el salario promedio, mostrando su nombre y salario.
 ``` python
+def calcular_promedio(empleados):
+    contador = 0
+    acumulador = 0
 
+    for empleado in empleados:
+        salario = empleados[empleado]['salario']
+        contador += 1
+        acumulador += salario
+    
+    media = acumulador / contador
+
+    return media
+
+
+def encontrar_salarios_por_encima_promedio(empleados, media):
+
+    empleados_salario_mayor_promedio = {}
+
+    media = calcular_promedio(empleados)
+
+    for empleado in empleados:
+        salario = empleados[empleado]['salario']
+        nombre = empleados[empleado]['nombre']
+
+        if(salario > media):
+            empleados_salario_mayor_promedio[empleado] = f"['nombre' = {nombre}, 'salario' = {salario}]"
+        
+    return empleados_salario_mayor_promedio
+
+
+if __name__ == '__main__':
+    media = calcular_promedio(empleados)
+    print(media)
+    empleados_mayor_salaario_que_media = encontrar_salarios_por_encima_promedio(empleados, media)
+    print(empleados_mayor_salaario_que_media)
 ```
 
 
-**10. Generar un informe por fecha de ingreso**
-- Ejercicio: Implementa una función que genere una lista de empleados que fueron contratados antes de una fecha específica (por ejemplo, antes de "2015-01-01"). La función debe listar el nombre y la fecha de ingreso de esos empleados.
-``` python
 
-```
-
-
-**11. Contar empleados por cargo**
+**10. Contar empleados por cargo**
 - Ejercicio: Crea una función que cuente cuántos empleados hay en cada cargo (por ejemplo, cuántos "Desarrolladores", cuántos "Gerentes", etc.) y muestre el resultado en un formato legible.
 ``` python
 
 ```
 
 
-**12. Ordenar empleados por antigüedad**
-- Ejercicio: Crea una función que ordene a los empleados según su antigüedad, de más antiguos a más recientes, y muestre el nombre, cargo y fecha de ingreso de cada uno.
-``` python
 
-```
-
-
-**13. Aumentar el salario de empleados por antigüedad**
+**11. Aumentar el salario de empleados por antigüedad**
 - Ejercicio: Crea una función que aumente el salario de los empleados que tienen más de 5 años en la empresa. El aumento será un porcentaje que se pase como parámetro a la función.
 ``` python
 
 ```
 
 
-**14. Listar empleados con el mismo cargo**
-- Ejercicio: Dado un cargo (por ejemplo, "Desarrollador"), muestra todos los empleados que ocupan ese cargo, ordenados por fecha de ingreso (el más reciente primero).
-``` python
 
-```
-
-
-**15. Promedio de salarios por edad**
-- Ejercicio: Implementa una función que calcule el salario promedio de todos los empleados que tengan la misma edad. La función debe retornar un diccionario donde las claves son las edades y los valores son los salarios promedio para cada edad.
-``` python
-
-```
-
-
-**16. Eliminar un empleado por ID**
+**12. Eliminar un empleado por ID**
 - Ejercicio: Crea una función que elimine un empleado de la base de datos dado su ID.
 ``` python
 
 ```
 
 
-**17. Modificar múltiples datos de un empleado**
+**13. Modificar múltiples datos de un empleado**
 - Ejercicio: Crea una función que permita modificar varios campos de un empleado a la vez (por ejemplo, cambiar el salario, cargo y la fecha de ingreso).
 ``` python
 
 ```
 
 
-**18. Mostrar empleados según criterio**
+**14. Mostrar empleados según criterio**
 - Ejercicio: Implementa una función que permita filtrar empleados por un criterio específico, como por ejemplo, todos los empleados que ganan más de 50,000, o los empleados que han ingresado en el último año.
 ``` python
 
 ```
 
 
-**19. Generar un informe de empleados con salarios superiores a un umbral**
-- Ejercicio: Crea una función que reciba un umbral de salario (por ejemplo, 60,000) y retorne una lista con los empleados cuyo salario es superior a ese umbral.
+**15. Generar un informe de empleados con salarios superiores a un umbral**
+- Ejercicio: Crea una función que reciba un umbral de salario (por ejemplo, 59,000) y retorne una lista con los empleados cuyo salario es superior a ese umbral.
