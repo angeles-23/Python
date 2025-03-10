@@ -245,13 +245,172 @@ print('Pi con dos decimales es: %.2f' %(pi))                # Pi con dos decimal
 
 
 ## 6. Clases
-### 6.1. Clase 
-### 6.2. Clase 
-### 6.3. Clase 
-### 6.4. Clase 
+En Python, las clases son estructuras que permiten organizar código en objetos con atributos y métodos. Existen varios tipos de **clases y métodos**, cada uno con características específicas.  
+
+### 6.1. Sintaxis
+``` python
+class MiClase:
+    '''
+    Ejemplo básico de una clase.
+    '''
+
+    def __init__(self, atributo1, atributo2):
+        self.atributo1 = atributo1
+        self.atributo2 = atributo2
+
+    def metodo(self):
+        return f'Valores: {self.atributo1}, {self.atributo2}'
+
+# Crear y usar una instancia
+objeto = MiClase('Python', 'Clases')
+print(objeto.metodo())  # Valores: Python, Clases
+``` 
+
+### 6.2. Conceptos fundamentales
+#### CONSTRUCTOR`(__init__)`
+El constructor se encarga de crear un objeto al crear una instancia. A través de él podemos configurar el estado inicial de la instancia creada
+``` python
+class Usuario:
+    def __init__(self, nombre, edad):
+        self.nombre = nombre
+        self.edad = edad
+    
+usuario = Usuario('Ana', 24)
+print(usuario.nombre)       # Ana
+```
+
+También puede recibir valores predeterminados que se usan en caso de no proporcionar parámetris al crear una instancia
+``` python
+class Usuario:
+    def __init__(self, nombre='Desconocido', edad=0):
+        self.nombre = nombre
+        self.edad = edad
+    
+usuario = Usuario()
+print(usuario.nombre)       # Desconocido
+```
+
+#### Atributos: Instancia y Clase
+- **Instancia**: Único para cada objeto, normalmente definidos en `__init__` y se acceden a ellos a través de `self`.
+- **Clase**: Compartidos entre todas las instancias, útiles para constantes o configuraciones comunes.
+``` python
+class Configuracion:
+    version = '1.0.0'   # Atributo de CLASE
+
+    def __init__(self, usuario, permisos=[]):
+        self.usuario = usuario      # Atributo de instancia
+        self.permisos = permisos
+
+    def agregar_permiso(self, permiso):
+        self.permisos.append(permiso)
+
+
+config = Configuracion('Admin')
+config.agregar_permiso('lectura')
+print(config.permisos)    # ['lectura']
+```
+
+
+
+#### Métodos
+Son funciones que definen los comportamientos de los objetos. Tenemos 3 tipos de métodos:
+- **Métodos de Instancia**: Operan sobre datos únicos de una instancia y utilizan `self`.
+- **Métodos de Clase**: Con el decorador `@classmethod`,permiten interactuar con atributos de clase. Usan `cls` en lugar de `self`.
+- **Métodos Estáticos**: No dependen de ninguna instancia o clase y funcionan como funciones regulares dentro del contexto de la clase. No usa `cls` ni `self`.
+
+``` python
+class Herramienta:
+    categoria = 'Software'
+
+    def __init__(self, nombre):
+        self.nombre = nombre
+
+    def mostrar_categoria(self):
+        return f'Categoría: {Herramienta.categoria}' # Devuelve el valor del atributo de la clase
+    
+    @classmethod
+    def cambiar_categoria(cls, nueva_categoria): # Modifica la categoría de TODAS las instancias
+        cls.categoria = nueva_categoria
+
+    @staticmethod   # Método independiente de la clase y de la instancia
+    def utilidad():
+        return 'Optimiza procesos específicos'
+
+
+herramienta = Herramienta('Editor de texto')
+Herramienta.cambiar_categoria('Utilidad')
+print(herramienta.mostrar_categoria())
+```
+
+
+Los métodos estáticos son especialmente útiles cuando no necesitamos acceso directo ni a la instancia ni a la clase, como en funciones o validaciones.
+
+``` python
+class Matematica:
+
+    @staticmethod
+    def sumar(a, b):
+        return a + b
+
+resultado = Matematica.sumar(5, 3)
+print(resultado)  # 8
+``` 
+
+### 6.3. Herencia 
+
+
+
+
+``` python
+
+```
+
+### 6.4. Encapsulamiento 
+
+``` python
+
+```
+
 ### 6.5. Clase 
+
+``` python
+
+```
+
 ### 6.6. Clase 
 
+
+``` python
+
+```
+
+
+
+  
+``` python
+class Persona:
+    def __init__(self, nombre, edad):
+        self.nombre = nombre
+        self.edad = edad
+
+# Método de instancia:
+#   - Siempre reciben 'self' como primer parámetro
+#   - Pueden acceder y modificar los atributos de instancia
+#   - Pueden llamar a otros métodos de instancia
+
+    def saludar(self):  # Método de instancia, siempre self y est la primera
+        print(f'Hola me llamo {self.nombre} y tengo {self.edad} años.') # Llamo a los atributos de la instancia
+        print(f'Hola me llamo {self.nombre} y {self.devolver_la_edad()}') # Llamo a un método de instancia
+    
+    def devolver_la_edad(self):     # Método de instanca
+        return f'Tengo {self.edad} años.'
+
+
+p = Persona('Javier', 28)
+p.saludar()
+# Hola me llamo Javier y tengo 28 años.
+# Hola me llamo Javier y Tengo 28 años.
+```
 
 
 
