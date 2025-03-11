@@ -752,6 +752,60 @@ print(persona_1.obtener_nombre())   # Oscar
 
 
 
-## 9. Ficheros
-### 9.1. Creación de 
-### 9.2. Creación de 
+## 9. Ficheros 📁
+
+### 9.1. Apertura de un Archivo
+Usa la funcion `open()`: recibe nombre del archivo y modo de apertura
+
+``` python
+f = open("datos.txt", "modo")  # Abrir el archivo
+```
+
+### 9.2. Modos de apertura
+- `r`: Lector (error si el archivo no existe)
+- `w`: Escriture (crea el archivo si no existe, sobreescribe si existe)
+- `a`: Añadir (agrega al final, sin borrar contenido)
+- `t`: Texto(modo por defecto)
+
+### 📌Lectura de Archivos
+#### Leer todo el contenido `read()`
+```python
+f = open('datos.txt', 'r')    
+contenido = f.read()      # Lee todo el archivo
+print(contenido)
+f.close()
+```
+
+#### Leer la primera linea `readline()`
+```python
+f = open('datos.txt', 'r')
+linea = f.readline()      # Lee la primera linea
+print(linea)
+f.close()
+```
+
+#### Leer todas las linea `readlines()`
+```python
+f = open('datos.txt', 'r')
+lineas = f.readlines()    # Devuelve una lista con todas las líneas
+print(lineas)
+f.close()
+```
+
+
+### 📌Escritura de Archivos
+#### Sobreescribir (`w`)
+```python
+f = open('datos.txt', 'w')
+f.write('Hola, esto sobreescribirá todo el contenido.\n')
+f.close()
+```
+
+
+### 📌Lectura de Archivos
+#### Añadir texto (`a`)
+```python
+f = open('datos.txt', 'a')
+f.write('Nueva línea añadida al final.\n')
+f.close()
+```
