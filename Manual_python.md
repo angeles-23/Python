@@ -357,64 +357,401 @@ print(resultado)  # 8
 ``` 
 
 ### 6.3. Herencia 
+La herencia permite que una clase hija o subclase adquiera atributos y métodos de otra clase padre o superclase. Esto fomenta la reutilización de código, evita la redundancia y facilita la mantenibilidad del software.
 
-
-
-
-``` python
-
-```
-
-### 6.4. Encapsulamiento 
-
-``` python
-
-```
-
-### 6.5. Clase 
-
-``` python
-
-```
-
-### 6.6. Clase 
-
-
-``` python
-
-```
-
-
-
+#### Tipos de Herencia
+Existen varios tipos de herencia en POO:
+- **Herencia Simple**: Una clase hija hereda de una sola clase padre.
+- **Herencia Múltiple**: Una clase hija hereda de múltiples clases padres.
+- **Herencia Multinivel**: Una clase hija hereda de otra clase hija, formando una cadena de herencia.
+- **Herencia Jerárquica**: Varias clases hijas heredan de una misma clase padre.
+- **Herencia Híbrida**: Combinación de dos o más tipos de herencia anteriores.
   
+
+**Herencia Simple**
+```python
+class Vehiculo:
+    def __init__(self, marca):
+        self.marca = marca
+
+    def descripcion(self):
+        return f'Vehículo de marca {self.marca}'
+
+
+class Coche(Vehiculo):
+    def __init__(self, marca, modelo):
+        super().__init__(marca)    # Llamamos al constructor de la clase padre
+        self.modelo = modelo
+
+    def descripcion(self):
+        return f'Coche ->  Modelo: {self.modelo}, Marca: {self.marca}'
+    
+
+coche = Coche('Toyota', 'Corolla')
+print(coche.descripcion())    # Coche ->  Modelo: Corolla, Marca: Toyota
+``` 
+
+
+
+**Herencia Múltiple**
+```python
+class Motor:
+    def tipo_motor(self):
+        return 'Motor de combustión interna'
+    
+class Chasis:
+    def tipo_chasis(self):
+        return 'Chasis monocasco'
+    
+class Automovil(Motor, Chasis):
+    def descripcion(self):
+        return f'Automóvil con {self.tipo_motor()} y tiene un {self.tipo_chasis()}'
+
+    def __str__(self):
+        return f'Motor: {self.tipo_motor()}, {self.tipo_chasis()}'
+    
+    
+automovil = Automovil()
+print(automovil)   # Motor: Motor de combustión interna, Chasis monocasco
+``` 
+
+
+
+**Herencia Multinivel**
+```python
+class Animal:
+    def sonido(self):
+        return 'Sonido genérico'
+
+    
+class Mamifero(Animal):
+    def caracteristica(self):
+        return 'Es un mamífero'
+    
+
+class Perro(Mamifero):
+    def sonido(self):
+        return 'Ladrido'
+
+
+perro = Perro()
+print(perro.sonido())            # Ladrido
+print(perro.caracteristica())    # Es un mamífero
+``` 
+
+
+**Super()**
+Se usa para llamar a métodos de la clase padre dentro de la clase hija.
+
+**Sin `super()`**
 ``` python
 class Persona:
     def __init__(self, nombre, edad):
         self.nombre = nombre
         self.edad = edad
 
-# Método de instancia:
-#   - Siempre reciben 'self' como primer parámetro
-#   - Pueden acceder y modificar los atributos de instancia
-#   - Pueden llamar a otros métodos de instancia
+    def presentacion(self):
+        return f"Me llamo {self.nombre} y tengo {self.edad} años."
 
-    def saludar(self):  # Método de instancia, siempre self y est la primera
-        print(f'Hola me llamo {self.nombre} y tengo {self.edad} años.') # Llamo a los atributos de la instancia
-        print(f'Hola me llamo {self.nombre} y {self.devolver_la_edad()}') # Llamo a un método de instancia
+class Estudiante(Persona):
+    def __init__(self, nombre, edad, carrera):
+        self.nombre = nombre  # Se repite la asignación de atributos de la clase padre
+        self.edad = edad
+        self.carrera = carrera
+
+    def presentacion(self):
+        return f"Me llamo {self.nombre}, tengo {self.edad} años y estudio {self.carrera}."
+
+estudiante = Estudiante("Pedro", 22, "Ingeniería Informática")
+print(estudiante.presentacion())  # Me llamo Pedro, tengo 22 años y estudio Ingeniería Informática.
+```
+
+
+**Con `super()`**
+``` python
+class Persona:
+    def __init__(self, nombre, edad):
+        self.nombre = nombre
+        self.edad = edad
+
+    def presentacion(self):
+        return f"Me llamo {self.nombre} y tengo {self.edad} años."
+
+class Estudiante(Persona):
+    def __init__(self, nombre, edad, carrera):
+        super().__init__(nombre, edad)  # Llamamos al constructor de la clase padre
+        self.carrera = carrera
+
+    def presentacion(self):
+        return f"{super().presentacion()} Estudio {self.carrera}."
+
+estudiante = Estudiante("Pedro", 22, "Ingeniería Informática")
+print(estudiante.presentacion())  # Me llamo Pedro y tengo 22 años. Estudio Ingeniería Informática.
+```
+
+### 6.4. Tipos de métodos 
+#### 6.4.1 Métodos de instancia
+Operan sobre una instancia específica de la clase. Pueden acceder y modificar los atributos de la instancia
+✔️ Características:
+- Siempre reciben self como primer parámetro.
+- Pueden acceder y modificar atributos de instancia.
+- Pueden llamar a otros métodos de la misma instancia.
+
+``` python
+class Persona:
+    def __init__(self, nombre, edad):
+        self.nombre = nombre
+        self.edad = edad 
     
-    def devolver_la_edad(self):     # Método de instanca
-        return f'Tengo {self.edad} años.'
+    def saludar(self):
+        return f'Hola, mi nombre es {self.nombre} y tengo {self.edad} años.'
+    
+
+persona1 = Persona('Ana', 25)
+print(persona1.saludar())  
+# Hola, mi nombre es Ana y tengo 25 años.
+```
 
 
-p = Persona('Javier', 28)
-p.saludar()
-# Hola me llamo Javier y tengo 28 años.
-# Hola me llamo Javier y Tengo 28 años.
+
+#### 6.4.2 Métodos de Clase(`@classmethod`)
+Operan sobre la clase en sí misma, en lugar de una instancia.
+
+✔️ Características:
+- Se definen con @classmethod.
+- Reciben **cls** como primer parámetro en lugar de self.
+- Pueden modificar atributos de clase, pero no de instancia.
+- Se pueden llamar desde la clase o desde una instancia.
+
+``` python
+class Coche:
+    cantidad_coches = 0
+
+    def __init__(self, marca):
+        self.marca = marca
+        Coche.cantidad_coches += 1                                                                   
+
+    @classmethod
+    def total_coches(cls):
+        return f'Total coches: {cls.cantidad_coches}'
+    
+coche1 = Coche('Peugeot')
+print(Coche.total_coches())     # Total coches: 1
+
+coche2 = Coche('BMW')
+print(Coche.total_coches())     # Total coches: 2
+```
+
+
+
+#### 6.4.3 Métodos Estáticos(`@staticmethod`)
+Son independientes de la clase y de las instancias. No pueden modificar ni acceder a atributos de instancia o de clase
+
+✔️ Características:
+- Se definen con @staticmethod.
+- No reciben self ni cls.
+- Funcionan como funciones normales, pero se organizan dentro de la clase.
+
+``` python
+class Utilidades:
+
+    @staticmethod
+    def es_par(numero):
+        if numero%2 == 0:
+            return True
+        else:
+            return False
+        
+print(Utilidades.es_par(5))     # True
+print(Utilidades.es_par(6))     # False
+```
+
+
+
+#### 6.4.4 Métodos y Clases Abstractos
+Es una clase que no puede ser instanciada directamente y sirve como plantilla para otras clases. Un método abstracto es un método definido en una clase base abstracta que debe ser implementado por las clase hijas.
+
+Pyhton proporciona el módulo `abc` para definir clases abstractas y métodos abstractos
+
+``` python
+from abc import ABC, abstractmethod
+
+class Dispositivo(ABC):
+    def __init__(self, marca, modelo):
+        self.marca = marca
+        self.modelo = modelo
+
+    @abstractmethod
+    def encender(self):
+        ...
+
+class Telefono(Dispositivo):
+    def encender(self):
+        return f'El telefono {self.marca} - {self.modelo} se está encendiendo'
+
+class Portatil(Dispositivo):
+    def encender(self):
+        return f'El portátil {self.marca} - {self.modelo} está arracando el sistema'
+    
+
+dispositivos = [
+    Telefono('Samsung', 'Galaxy 210'),
+    Portatil('Dell', 'XPS 15')
+]
+
+for dispositivo in dispositivos:
+    print(dispositivo.encender())
+
+# El telefono Samsung - Galaxy 210 se está encendiendo
+# El portátil Dell - XPS 15 está arracando el sistema
+
 ```
 
 
 
 
-## 7. Ficheros
-### 7.1. Creación de 
-### 7.2. Creación de 
+## 7. Polimorfismo 
+Permite utilizar un mismo método en diferentes clases, asegurando que cada clase implemente su propia versión del método. Esto favorece la flexibilidad y la escalabilidad del código, permitiendo que se interactúe con objetos de distintos tipos de manera uniforme
+
+Tipos de Polimorfismo:
+- **Polimorfismo de Sobreescritura** (Overriding): Cuando una subclase redefine un método de la superclase para adaptarlo a su propio comportamiento.
+- **Polimorfismo de Sobrecarga** (Overloading): Cuando múltiples métodos comparten el mismo nombre pero tienen diferentes parámetros (en Python, esto se simula con argumentos opcionales o *args).
+- **Polimorfismo basado en interfaces**: Cuando diferentes clases implementan los mismos métodos sin necesidad de heredar de una clase base.
+
+#### Polimorfismo de Sobreescrcitura
+``` python
+class Animal:
+    def sonido(self):
+        raise NotImplementedError("Este método debe ser implementado en la subclase")
+
+class Perro(Animal):
+    def sonido(self):
+        return "Ladra"
+
+class Gato(Animal):
+    def sonido(self):
+        return "Maúlla"
+
+# Lista de objetos de diferentes tipos
+animales = [Perro(), Gato()]
+
+# Uso de polimorfismo: mismo método llamado en diferentes clases
+for animal in animales:
+    print(animal.sonido())
+# Ladra
+# Maúlla
+```
+
+
+#### Polimorfismo de Sobrecarga 
+``` python
+class Calculadora:
+    def suma(self, a, b, c=0):
+        return a + b + c  # El tercer parámetro es opcional
+
+calc = Calculadora()
+print(calc.suma(2, 3))      # Salida: 5
+print(calc.suma(2, 3, 4))   # Salida: 9
+```
+
+
+#### Polimorfismo basado en interfaces 
+```python
+class Pato:
+    def sonido(self):
+        return "Cua cua"
+
+class Persona:
+    def sonido(self):
+        return "Hola!"
+
+# Lista de objetos sin relación de herencia
+objetos = [Pato(), Persona()]
+
+for objeto in objetos:
+    print(objeto.sonido())  # Se ejecuta el método correspondiente a cada clase
+```
+
+## 8. Encapsulamiento
+Controla cómo se accede y modifica la información de un objeto. Esto ayuda a mantener la integridad y seguridad de los datos dentro de una clase.
+
+### Niveles de Accesibilidad en Python
+- **Público**: Se puede acceder desde cualquier parte del código. No tiene prefijo especial.
+- **Protegido**: Se indica con un guión bajo `_` y sugiere que solo debe usarse dentro de la clase o sus subclases.
+- **Privado**: Se indica con un doble guión bajo `__` y oculta el atributo o método, evitando su acceso directo fuera de la clase.
+
+
+
+### Ejemplo de encapsulamiento
+``` python
+class Datos:
+    def __init__(self):
+        self.publico = 'Accesible'          # Atributo público
+        self._protegido = 'Uso interno'     # Atributo protegido
+        self.__privado = 'Oculto'           # Atributo privado
+
+    def obtener_privado(self):
+        return self.__privado   # Método para acceder a un atributo privado
+    
+
+dato_1 = Datos()
+print(dato_1.publico)
+print(dato_1._protegido)
+
+# print(dato_1.__privado)     ERROR. Es un metodo privado
+print(dato_1.obtener_privado())
+```
+
+### Encapsulación en Métodos
+Los métodos también pueden ser públicos, protegidos o privados
+``` python
+class Ejemplo:
+    def metodo_publico(self):
+        return 'Método público'
+    
+    def _metodo_protegido(self):
+        return 'Metodo protegido'
+    
+    def __metodo_privado(self):
+        return 'Método privado'
+    
+    def llamar_metodo_privado(self):
+        return self.__metodo_privado()     # Acceder al método privado desde dentro de la clase
+    
+
+objeto_1 = Ejemplo()
+print(objeto_1.metodo_publico())
+print(objeto_1._metodo_protegido())
+
+# print(objeto_1.__metodo_privado())  ERROR. Es un metodo privado
+print(objeto_1.llamar_metodo_privado())
+```
+
+
+### Modificación de Atributos Privados
+Aunque los atributos privados no pueden ser accedidos directamente, se pueden modificar usnado getter y setter.
+
+``` python
+class Persona:
+    
+    def __init__(self, nombre):
+        self.__nombre = nombre
+
+    def obtener_nombre(self):
+        return self.__nombre
+    
+    def cambiar_nombre(self, nuevo_nombre):
+        self.__nombre = nuevo_nombre
+
+persona_1 = Persona('Carlos')
+print(persona_1.obtener_nombre())   # Carlos
+persona_1.cambiar_nombre('Oscar')
+print(persona_1.obtener_nombre())   # Oscar
+```
+
+
+
+
+## 9. Ficheros
+### 9.1. Creación de 
+### 9.2. Creación de 
