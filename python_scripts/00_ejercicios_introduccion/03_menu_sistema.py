@@ -1,18 +1,19 @@
 #! usr/bin/python
 
-import subprocess
+import subprocess, sys
 
 
 def main():
+
     while True:
         mostrar_menu()
         opcion = elegir_opcion()
 
         match opcion:
             case 1:
-                print(mostrar_fecha())
+                mostrar_fecha()
             case 2:
-                mostar_usuario()
+                mostrar_usuario_actual()
             case 3:
                 mostrar_usuarios_conectados()
             case 4:
@@ -21,10 +22,13 @@ def main():
                 cambiar_contrasenia()
             case 6:
                 print('Saliendo...')
-                break
+                sys.exit(0)
+        print()
+
 
 
 def mostrar_menu():
+    print('*** MENÚ ***')
     print('1) Mostrar la fecha')
     print('2) Mostrar usuario actual')
     print('3) Mostrar usuarios conectados')
@@ -41,19 +45,18 @@ def elegir_opcion():
             if opcion > 0 and opcion < 7:
                 return opcion
             else:
-                print('Has introducido una opción incorrecta. Vuelve a intentarlo')
+                print('Error. Has introducido una opción incorrecta. Vuelve a intentarlo')
 
         except Exception:
             print('Error. Has introducido un valor incorrecto')
 
 
 def mostrar_fecha():
-    fecha_docker = subprocess.getoutput(['date'])
-    fecha = fecha_docker.split(' ')
+    fecha_docker = subprocess.getoutput(['date']).split(' ')
 
-    dia_docker = fecha[0]
-    mes_docker = fecha[1]
-    anio_docker = fecha[5]
+    mes_docker = fecha_docker[1]
+    numero_dia_docker = fecha_docker[2]
+    anio_docker = fecha_docker[5]
 
     match mes_docker:
         case 'Jan':
@@ -81,18 +84,21 @@ def mostrar_fecha():
         case 'Dec':
             mes = 12
 
-    fecha_formateada = f'{dia_docker}/{mes}/{anio_docker}'
-    return fecha_formateada
+    if mes < 10:
+        print(f'{numero_dia_docker}/0{mes}/{anio_docker}')
+    else:
+        print(f'{numero_dia_docker}/{mes}/{anio_docker}')
 
 
-def mostar_usuario():
-    ...
+def mostrar_usuario_actual():
+    print(subprocess.getoutput(['whoami']))
+
 
 def mostrar_usuarios_conectados():
     ...
 
 def mostrar_calendario_actual():
-    ...
+    print(subprocess.getoutput(['cal']))
 
 def cambiar_contrasenia():
     ...
