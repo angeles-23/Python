@@ -1,19 +1,19 @@
 #! usr/bin/python
 
 # IMPORTAR FICHEROS
-import e_01_limpiar_pantalla  # Opción 1: Importa el fichero entero
+import e_01_limpiar_pantalla                    # Opción 1: Importar el fichero entero
 from e_01_limpiar_pantalla import clear_screen  # Opción 2: Desde el fichero importa una funcion específica
 
 # LLAMAR FUNCIONES
-e_01_limpiar_pantalla.clear_screen    # Opción 1: LLamar al fichero y seguido a la función separada por un punto
-clear_screen() # Opción 2: Escribir la función específica
+e_01_limpiar_pantalla.clear_screen()            # Opción 1: LLamar al fichero y seguido a la función separada por un punto
+clear_screen()                                  # Opción 2: Escribir la función específica
 
 import e_02_informacion_sistema
 import subprocess, sys
 
 
 def main():
-    e_01_limpiar_pantalla.clear_screen
+    e_01_limpiar_pantalla.clear_screen()
 
     while True:
         mostrar_menu()
@@ -25,12 +25,13 @@ def main():
             case 2:
                 print(f'Usuario: {e_02_informacion_sistema.mostrar_usuario()}')
             case 3:
-                nombre_nuevo_usuario = input('Nombre del nuevo usuario: ')
+                nombre_nuevo_usuario = input('Introduce el nombre del nuevo usuario: ')
                 aniadir_usuario(nombre_nuevo_usuario)
             case 4:
                 mostrar_calendario_actual()
             case 5:
-                cambiar_contrasenia()
+                usuario_a_cambiar_contrasena = input('Introduce el nombre del usuario para cambiar su contraseña: ')
+                cambiar_contrasenia(usuario_a_cambiar_contrasena)
             case 6:
                 print('Saliendo...')
                 sys.exit(0)
@@ -65,17 +66,30 @@ def mostrar_usuario_actual():
     print(subprocess.getoutput(['whoami']))
 
 
-def aniadir_usuario(nombre):
+def aniadir_usuario(nombre_usuario):
     try:
-        subprocess.run(['sudo, adduser', nombre])
+        resultado = subprocess.run(['adduser', nombre_usuario])
+
+        if resultado.returncode == 0:
+            print(f'Se ha creado el usuario {nombre_usuario}')
+        else:
+            print(f'Se ha producido un error al crear un usuario {nombre_usuario}')
+
     except Exception:
         print('Error al añadir al usuario')
+
 
 def mostrar_calendario_actual():
     print(subprocess.getoutput(['cal']))
 
-def cambiar_contrasenia():
-    ...
+
+def cambiar_contrasenia(usuario):
+    resultado =  subprocess.run(['passwd', usuario])
+
+    if resultado.returncode == 0:
+        print('Cambio de contraseña correcto')
+    else:
+        print('Se ha producido un errro al cambiar la contraseña')
 
 
 
