@@ -13,7 +13,7 @@ import subprocess, sys
 
 
 def main():
-    e_01_limpiar_pantalla.clear_screen()
+    clear_screen()
 
     while True:
         mostrar_menu()
@@ -63,33 +63,31 @@ def elegir_opcion():
 
 
 def mostrar_usuario_actual():
-    print(subprocess.getoutput(['whoami']))
+    subprocess.run(['whoami'])
 
 
 def aniadir_usuario(nombre_usuario):
-    try:
-        resultado = subprocess.run(['adduser', nombre_usuario])
 
-        if resultado.returncode == 0:
-            print(f'Se ha creado el usuario {nombre_usuario}')
-        else:
-            print(f'Se ha producido un error al crear un usuario {nombre_usuario}')
+    resultado = subprocess.run(['adduser', nombre_usuario], capture_output=True, text=True)
 
-    except Exception:
-        print('Error al añadir al usuario')
+    if resultado.returncode == 0:
+        print(f'Se ha creado el usuario {nombre_usuario}')
+    else:
+        print(f'Se ha producido un error al crear un usuario {nombre_usuario}')
+
 
 
 def mostrar_calendario_actual():
-    print(subprocess.getoutput(['cal']))
+    subprocess.run(['cal'])
 
 
 def cambiar_contrasenia(usuario):
-    resultado =  subprocess.run(['passwd', usuario])
+    resultado =  subprocess.run(['passwd', usuario], capture_output=True, text=True)
 
     if resultado.returncode == 0:
         print('Cambio de contraseña correcto')
     else:
-        print('Se ha producido un errro al cambiar la contraseña')
+        print('Se ha producido un error al cambiar la contraseña')
 
 
 
