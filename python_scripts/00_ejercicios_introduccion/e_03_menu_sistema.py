@@ -69,7 +69,8 @@ def mostrar_usuario_actual():
 def aniadir_usuario(nombre_usuario):
 
     resultado = subprocess.run(['adduser', nombre_usuario], capture_output=True, text=True)
-
+    # resultado = subprocess.run(['adduser', '-D', nombre_usuario], capture_output=True, text=True) Otra forma de añadir un usuario sin contraseña
+    
     if resultado.returncode == 0:
         print(f'Se ha creado el usuario {nombre_usuario}')
     else:
