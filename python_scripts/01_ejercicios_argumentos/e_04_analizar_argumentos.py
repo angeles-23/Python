@@ -17,6 +17,7 @@ def describir_argumentos(argumentos):
     contador_mixto = 0
     caracter_punto = '.'
 
+
     for i in range(len(argumentos)):
 
         if argumentos[i].isalpha():
@@ -33,20 +34,20 @@ def describir_argumentos(argumentos):
 
         else: 
             contador_mixto += 1
-            descripcion = 'Mixto'
+            descripcion = '\033[34mMixto\033[0m'
         
         print(f'Argumento {i+1}: {argumentos[i]} →  {descripcion}')
 
     print('\nResumen:')
-    print(f'Enteros: {contador_enteros}')
-    print(f'Decimales: {contador_decimales}')
-    print(f'Textos: {contador_cadenas}')
-    print(f'Mixtos: {contador_mixto}')
+    print(f'\033[32mEnteros: {contador_enteros}\033[0m')
+    print(f'\033[35mDecimales: {contador_decimales}\033[0m')
+    print(f'\033[33mTextos: {contador_cadenas}\033[0m')
+    print(f'\033[34mMixtos: {contador_mixto}\033[0m')
             
 
 
 def calcular_longitud(argumento_texto):
-    return f'Texto longitud ({len(argumento_texto)})'
+    return f'\033[33mTexto longitud ({len(argumento_texto)})\033[0m'
 
 
 
@@ -55,9 +56,9 @@ def es_par(argumento_entero):
     argumento_entero = int(argumento_entero)
 
     if argumento_entero % 2 == 0:
-        return 'Entero (par)'
+        return '\033[32mEntero (par)\033[0m'
     else:
-        return 'Entero (impar)'
+        return '\033[32mEntero (impar)\033[0m'
 
 
 
@@ -66,9 +67,9 @@ def es_positivo(argumento_decimal):
     argumento_decimal = float(argumento_decimal)
 
     if argumento_decimal > 0:
-        return 'Decimal positivo'
+        return '\033[35mDecimal positivo\033[0m'
     else:
-        return 'Decimal negativo'
+        return '\033[35mDecimal negativo\033[0m'
 
 
 
