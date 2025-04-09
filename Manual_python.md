@@ -809,3 +809,161 @@ f = open('datos.txt', 'a')
 f.write('Nueva línea añadida al final.\n')
 f.close()
 ```
+
+### 9.3. Empleo de lambda, filter, map, reduce
+
+#### 1️⃣ lambda
+Define funciones pequeñas y simples de una manera compacta.
+#### `lambda argumentos: expresión`
+
+- **argumentos**: Los parámetros que recibe la función.
+- **expresión**: El valor que se devuelve, basado en los argumentos.
+
+Ejemplo: 
+Crear una función lambda que sume dos números
+```python
+suma = lambda x, y: x + y
+resultado = suma(3, 5)
+
+print(resultado)  # Resultado: 8
+```
+
+Explicación:
+- `lambda x, y: x + y` define una función que toma dos argumentos (`x` y `y`) y devuelve su suma.
+- Luego, la función se invoca pasando los valores `3` y `5`, y el resultado es `8`.
+
+Ejemplo con tuplas:
+Ordenar las tuplas por el primer valor (el primer elemento de cada tupla)
+```python
+tuplas = [(1, 'a'), (3, 'c'), (2, 'b')]
+ordenadas = sorted(tuplas, key=lambda x: x[0])
+
+print(ordenadas)  # Resultado: [(1, 'a'), (2, 'b'), (3, 'c')]
+```
+
+Explicación:
+- `lambda x: x[0]` es una función anónima que toma una tupla `x` y devuelve su primer valor (`x[0]`).
+- La función `sorted()` usa esta función `lambda` para ordenar las tuplas según su primer valor.
+
+
+
+
+
+#### 2️⃣ filter
+Filtra los elementos de un iterable según una condición, y devuelve los elementos para lo que la función devuelve True.
+#### **`filter(función, iterable)`**
+
+- **función**: Una función que devuelve True o False para cada elemento.
+- **iterable**: El iterable cuyos elementos serán filtrados.
+
+Ejemplo:
+Imagina que tienes una lista de números y quieres obtener solo los números pares.
+
+```python
+numeros = [1, 2, 3, 4, 5, 6]
+pares = list (filter (lambda x: x % 2 == 0, numeros ) )
+
+print(pares)  # Resultado: [2, 4, 6]
+```
+Explicación:
+- `filter` aplica la función `lambda x: x % 2 == 0`, que devuelve True solo para los números pares, y filtra el resto.
+- El resultado es un iterable con solo los números pares de la lista original.
+
+
+
+
+
+#### 3️⃣ map
+Aplica una función a cada elemento de un iterable (lista, tupla, etc.) y devuelve un nuevo iterable con los resultados.
+#### `map(función, iterable)`
+
+- **función**: La función que se aplica a cada elemento del iterable.
+- **iterable**: El iterable cuyos elementos serán transformados.
+
+Ejemplo:
+Imagina que tienes una lista de números y quieres obtener una lista de sus cuadrados.
+
+```python
+numeros = [1, 2, 3, 4, 5]
+cuadrados = list(map(lambda x: x ** 2, numeros))
+
+print(cuadrados)  # Resultado: [1, 4, 9, 16, 25]
+```
+
+Explicación:
+- `map` aplica la función `lambda x: x ** 2` (que eleva cada número al cuadrado) a cada elemento de la lista `numeros`.
+- El resultado es un iterable con los cuadrados de los números, que se convierte en lista usando `list()`.
+
+
+
+
+
+##### 4️⃣ reduce
+Se encuentra en le módulo **`functools`**, aplica una función de manera acumulativa a los elementos de un iterable, de modo que el resultado final es un solo valor.
+
+#### `from functools import reduce`
+#### `reduce(función, iterable, valor_inicial)`
+
+- **función**: La función que realiza la operación acumulativa.
+- **iterable**: El iterable cuyos elementos se combinan.
+- `valor_inicial (opcional)`: Un valor inicial que se usa como base para el primer paso de la reducción.
+
+Ejemplo:
+Imagina que tienes una lista de números y quieres calcular la suma total de todos ellos.
+
+```python
+from functools import reduce
+
+numeros = [1, 2, 3, 4, 5]
+suma_total = reduce(lambda x, y: x + y, numeros)
+
+print(suma_total)  # Resultado: 15
+```
+
+Explicación:
+- `reduce` aplica la función `lambda x, y: x + y` de forma acumulativa:
+  - Primero suma 1 + 2 = 3.
+  - Luego suma 3 + 3 = 6.
+  - Luego suma 6 + 4 = 10.
+  - Finalmente suma 10 + 5 = 15.
+- El resultado es un solo valor: la suma total de los elementos.
+
+
+
+---
+
+
+
+
+
+#### Resumen y comparación
+|Función|Descripción|Ejemplo|
+|-------|-----------|-------|
+|`lambda`|	Crea una función anónima, es decir, una función sin nombre, para operaciones simples en una sola línea. Se usa comúnmente con funciones como map, filter y reduce.|Sumar 2 números|
+|`filter`|	Filtra los elementos de un iterable según una condición, y devuelve los elementos para los que la función devuelve True.|Obtener solo los números pares de una lista.|
+|`map`|Aplica una función a cada elemento de un iterable y devuelve un nuevo iterable con los resultados|Convertir una lista de números a sus cuadrados.|
+|`reduce`|Aplica una operación acumulativa a los elementos de un iterable, reduciendo el iterable a un solo valor.|Sumar todos los elementos de una lista.|
+
+#### Ejemplo de uso combinado:
+Imagina que tienes una lista de números y quieres filtrar los números pares, luego elevarlos al cuadrado y finalmente obtener la suma de los cuadrados.
+
+```python
+from functools import reduce
+
+numeros = [1, 2, 3, 4, 5, 6]
+
+# Filtrar los números pares
+pares = filter(lambda x: x % 2 == 0, numeros)
+
+# Elevar al cuadrado los números filtrados
+cuadrados = map(lambda x: x ** 2, pares)
+
+# Obtener la suma de los cuadrados
+suma = reduce(lambda x, y: x + y, cuadrados)
+
+print(suma)  # Resultado: 56 (4 + 16 + 36)
+```
+Explicación:
+- `filter` filtra los números pares: `[2, 4, 6]`.
+- `map` eleva al cuadrado esos números: `[4, 16, 36]`.
+- `reduce` suma los cuadrados: `4 + 16 + 36 = 56`.
