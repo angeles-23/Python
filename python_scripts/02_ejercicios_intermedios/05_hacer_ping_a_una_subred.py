@@ -8,20 +8,19 @@ ERROR_CANTIDAD_DE_DATOS_SUBRED = 2
 ERROR_DIGITOS_FUERA_DE_RANGO_SUBRED = 3
 
 
+
 def main():
     limpiar_pantalla()
     argumentos = sys.argv[1:]
     subred = comprobar_subred(argumentos)
     subred_correcta = validar_subred(subred)
-    print(subred_correcta)
-    # test_communications_host(subred_correcta)
+    test_communications_host(subred_correcta)
 
-    
-    
+
 
 def comprobar_subred(argumentos) -> str:
-    puertas_enlace = {'DAW1':'192.168.0', 'MURCIAEDUCA-DOC':'10.88.75'}
-                         #  192.168.0.1                 10.88.75.254
+    puertas_enlace = {'DAW1':'192.168.0', 'MURCIAEDUCA-DOC':'10.88.75', 'Datos':'192.168.239'}
+                         #  192.168.0.1                 10.88.75.254        192.168.239.189
 
     if len(argumentos) == 1:
         subred = argumentos[0]
@@ -35,15 +34,12 @@ def comprobar_subred(argumentos) -> str:
 
 
 
-def validar_subred(subred) -> str:
+def validar_subred(subred:str) -> str:
 
-    if(type(subred) == dict):
-        for red in subred:
-            print(red) 
+    if type(subred) == dict:
+        return subred
 
-
-    elif (type(subred) == str):
-
+    elif type(subred) == str:
         formato_subred = subred.split('.')
 
         if(len(formato_subred) != 3):
@@ -69,37 +65,50 @@ def validar_subred(subred) -> str:
 
 
 
-
-
-
 def test_communications_host(subred:str) -> None:
 
-    for ultimo_digito in range(1, 10): #255
-        try:
-            ip = f'{subred}.{ultimo_digito}'
-            resultado = subprocess.run(['ping', '-c', '1', ip], 
-                                    capture_output=True, 
-                                    text=True, 
-                                    timeout=0.25)
+    direcciones_con_comunicacion = []
+
+    if type(subred) == dict:
+        for ultimo_digito,(clave, valor) in enumerate(subred.items()):
+            print(f'WIFI: {clave}')
+
+            for ultimo_digito in range(1, 255):
+                try:
+                    ip = f'{valor}.{ultimo_digito}'
+                    resultado = subprocess.run(['ping', '-c', '1', ip], 
+                                                capture_output=True, 
+                                                text=True, 
+                                                timeout=0.25)
+
+                    if resultado.returncode == 0:
+                        print(f'📡    {TerminalColors.GREEN}{clave} - Hay comunicación con el destino <{ip}>{TerminalColors.RESET}')
+                        direcciones_con_comunicacion.append(ip)
+                except subprocess.TimeoutExpired:
+                    print(f'🕐    {clave} - No hay comunicación con el destino <{ip}>')
             
-            if resultado.returncode == 0:
-                print(f'📡    Hay comunicación con el destino <{ip}>')
-            
-        except subprocess.TimeoutExpired:
-            print(f'🕐    No hay comunicación con el destino <{ip}>')
+            print()
 
+    elif type(subred) == str:
 
+        for ultimo_digito in range(1, 255): #255
+            try:
+                ip = f'{subred}.{ultimo_digito}'
+                resultado = subprocess.run(['ping', '-c', '1', ip], 
+                                        capture_output=True, 
+                                        text=True, 
+                                        timeout=0.25)
+                
+                if resultado.returncode == 0:
+                    print(f'📡    {TerminalColors.GREEN}Hay comunicación con el destino <{ip}>{TerminalColors.RESET}')
+                    direcciones_con_comunicacion.append(ip)
+            except subprocess.TimeoutExpired:
+                print(f'🕐    No hay comunicación con el destino <{ip}>')
 
+    print('\nDIRECCIONES DISPONIBLES')
+    for direccion in direcciones_con_comunicacion:
+        print(direccion)
 
-
-
-def pruebas_conexion_avanzadas() -> None:
-
-    direcciones_lista = []
-
-    return direcciones_lista
-
-    
 
 
 
